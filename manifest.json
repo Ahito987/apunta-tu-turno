@@ -1,0 +1,16 @@
+{
+  "name": "Apunta tu turno",
+  "short_name": "Turnos",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f4f4f4",
+  "theme_color": "#4CAF50",
+  "description": "App para gestionar tus turnos fácilmente",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
