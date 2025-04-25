@@ -3,169 +3,228 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Apunta tu turno</title>
+  <title>TurnosApp</title>
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#ffffff" />
   <link rel="icon" type="image/png" href="imagenes/calendario.png" alt="" width="34" height="38" id="calendario">
   <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js');
-      });
-    }
-  </script>
-  <script>
+    <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('SW registrado:', reg))
-        .catch(err => console.error('Error registrando SW:', err));
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(registration => {
+          console.log('Service Worker registrado con éxito:', registration.scope);
+        })
+        .catch(error => {
+          console.log('Fallo el registro del Service Worker:', error);
+        });
     });
   }
 </script>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 1rem;
-      background: #f4f4f4;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
       color: #333;
     }
     header {
+      background-color: #009688;
+      color: white;
       text-align: center;
-      margin-bottom: 1rem;
-    }
-    .logo {
+      padding: 1rem;
       font-size: 1.5rem;
-      font-weight: bold;
-      color: #4CAF50;
-      background: #ffffff;
-      padding: 0.5rem 1rem;
-      border-radius: 1rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    header img {
+      width: 30px;
+      height: 30px;
+    }
+    main {
+      padding: 1rem;
     }
     h1 {
+      font-size: 1.8rem;
       text-align: center;
-      color: #4CAF50;
-      background: #ffffff;
-      padding: 0.5rem 1rem;
-      border-radius: 1rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      display: inline-block;
+      margin-bottom: 1rem;
     }
     form {
+      background: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       display: grid;
       gap: 1rem;
-      max-width: 400px;
-      margin: auto;
-      background: #ffffff;
-      padding: 1.5rem;
-      border-radius: 1rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    input, select, textarea, button {
-      padding: 0.5rem;
-      border-radius: 0.5rem;
-      border: 1px solid #ccc;
-      background: #fff;
-      color: #000;
-      width: 100%;
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
-    }
-    button[type="submit"] {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
+    label {
       font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
-    button[type="submit"]:hover {
-      background-color: #388e3c;
-    }
-    td button {
-      background-color: #e53935;
-      color: white;
-      border: none;
-      padding: 0.3rem 0.6rem;
-      border-radius: 0.3rem;
-      cursor: pointer;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    }
-    td button:hover {
-      background-color: #c62828;
-    }
-    .listado-turnos {
-      margin-top: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .turno-item {
-      background: #fff;
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem;
       border: 1px solid #ccc;
+      border-radius: 0.4rem;
+      background: #fff;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #009688;
+      color: white;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #00796b;
+    }
+    table {
+      width: 100%;
+      margin-top: 1rem;
+      background: white;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 0.8rem;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background: #f2f2f2;
+      font-weight: bold;
+    }
+    .delete-btn {
+      background: none;
+      border: none;
+      color: red;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    .turnos-lista {
+      margin-top: 2rem;
+    }
+    .turno-card {
+      background: #fff8dc;
       padding: 1rem;
       margin-bottom: 1rem;
-      border-radius: 1rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .turno-item strong {
-      display: inline-block;
-      width: 90px;
+    .turno-card strong {
+      display: block;
+      margin-bottom: 0.5rem;
     }
   </style>
 </head>
+
 <body>
   <header>
-    <div class="logo">📅 Apunta tu turno</div>
+    <img src="https://cdn-icons-png.flaticon.com/512/61/61205.png" alt="Logo">
+    <span>TurnosApp</span>
   </header>
 
-  <h1>Apunta tu turno</h1>
-  <form id="turnoForm">
-    <input type="date" id="fecha" required />
-    <input type="time" id="hora" required />
-    <select id="tipo" required>
-      <option value="Mañana">Mañana</option>
-      <option value="Tarde">Tarde</option>
-      <option value="Noche">Noche</option>
-      <option value="Vacaciones">Vacaciones</option>
-      <option value="Libranza">Libranza</option>
-    </select>
-    <textarea id="nota" placeholder="Notas..." rows="3"></textarea>
-    <button type="submit">Guardar Turno</button>
-  </form>
+  <main>
+    <h1>Apunta tu turno</h1>
 
-  <div class="listado-turnos" id="listadoTurnos"></div>
+    <form id="formTurno">
+      <div>
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" required>
+      </div>
+      <div>
+        <label for="hora">Hora:</label>
+        <input type="time" id="hora" required>
+      </div>
+      <div>
+        <label for="tipo">Tipo de turno:</label>
+        <select id="tipo" required>
+          <option value="Mañana">Mañana</option>
+          <option value="Tarde">Tarde</option>
+          <option value="Noche">Noche</option>
+          <option value="Vacaciones">Vacaciones</option>
+          <option value="Libranza">Libranza</option>
+        </select>
+      </div>
+      <div>
+        <label for="nota">Nota:</label>
+        <textarea id="nota" rows="2" placeholder="Notas..."></textarea>
+      </div>
+      <button type="submit">Añadir turno</button>
+    </form>
+
+    <div id="tablaTurnos">
+      <table id="listadoTurnos">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Nota</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Turnos insertados aquí -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="turnos-lista" id="turnosCards">
+      <h2>Turnos</h2>
+      <!-- Turnos en cards -->
+    </div>
+  </main>
 
   <script>
-    const turnoForm = document.getElementById('turnoForm');
-    const listadoTurnos = document.getElementById('listadoTurnos');
+    const formTurno = document.getElementById('formTurno');
+    const listadoTurnos = document.getElementById('listadoTurnos').querySelector('tbody');
+    const turnosCards = document.getElementById('turnosCards');
 
     let turnos = JSON.parse(localStorage.getItem('turnos')) || [];
 
-    function renderTurnos() {
+    function renderizarTurnos() {
       listadoTurnos.innerHTML = '';
+      turnosCards.innerHTML = '<h2>Turnos</h2>';
+
       turnos.forEach((turno, index) => {
-        const div = document.createElement('div');
-        div.className = 'turno-item';
-        div.innerHTML = `
-          <p><strong>Fecha:</strong> ${turno.fecha}</p>
-          <p><strong>Hora:</strong> ${turno.hora}</p>
-          <p><strong>Tipo:</strong> ${turno.tipo}</p>
-          <p><strong>Notas:</strong> ${turno.nota || '-'}</p>
-          <button onclick="eliminarTurno(${index})">Eliminar</button>
+        // Tabla
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${formatearFecha(turno.fecha)}</td>
+          <td>${turno.hora} – ${turno.tipo}<br>${turno.nota || ''}</td>
+          <td><button class="delete-btn" onclick="eliminarTurno(${index})">🗑️</button></td>
         `;
-        listadoTurnos.appendChild(div);
+        listadoTurnos.appendChild(row);
+
+        // Card
+        const card = document.createElement('div');
+        card.className = 'turno-card';
+        card.innerHTML = `
+          <strong>${formatearFecha(turno.fecha)}</strong>
+          <p><strong>${turno.hora} – ${turno.tipo}</strong></p>
+          <p>${turno.nota || ''}</p>
+        `;
+        turnosCards.appendChild(card);
       });
     }
 
     function eliminarTurno(index) {
       turnos.splice(index, 1);
       localStorage.setItem('turnos', JSON.stringify(turnos));
-      renderTurnos();
+      renderizarTurnos();
     }
 
-    turnoForm.addEventListener('submit', e => {
+    function formatearFecha(fecha) {
+      const [a, m, d] = fecha.split('-');
+      return `${d}/${m}/${a}`;
+    }
+
+    formTurno.addEventListener('submit', (e) => {
       e.preventDefault();
       const nuevoTurno = {
         fecha: document.getElementById('fecha').value,
@@ -175,11 +234,12 @@
       };
       turnos.push(nuevoTurno);
       localStorage.setItem('turnos', JSON.stringify(turnos));
-      turnoForm.reset();
-      renderTurnos();
+      formTurno.reset();
+      renderizarTurnos();
     });
 
-    renderTurnos();
+    renderizarTurnos();
   </script>
 </body>
 </html>
+    
