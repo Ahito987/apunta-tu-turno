@@ -1,13 +1,14 @@
 {
-  "name": "Apunta tu Turno",
+  "name": "TurnosApp",
   "short_name": "Turnos",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#4CAF50",
+  "background_color": "#009688",
+  "theme_color": "#009688",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      "src": "https://cdn-icons-png.flaticon.com/512/61/61205.png",
       "sizes": "512x512",
       "type": "image/png"
     }
