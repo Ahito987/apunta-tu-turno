@@ -27,15 +27,26 @@ Puedes alojarla fácilmente en GitHub Pages, Netlify o cualquier servidor web, o
 2. En la configuración del repositorio, habilita GitHub Pages desde la rama `main` o `docs`.
 3. ¡Listo! Tu app estará disponible en una URL pública.
 
-### Para empaquetar como APK para Android:
 
-1. Usa herramientas como [**WebView Gold**, **PWA2APK**, **Bubblewrap**] o crea una app nativa ligera en Android Studio que cargue tu página web.
-2. Alternativamente, si quieres hacerlo fácil:
-   - Instala **CapacitorJS** o **Cordova**.
-   - Empaqueta tu sitio como una app webview.
-   - Compila usando Android Studio.
+# TurnosApp
 
-Te puedo guiar en ese proceso si quieres. 🚀
+**TurnosApp** es una aplicación web sencilla que permite a los usuarios registrar, visualizar y eliminar turnos personales. Funciona completamente en el navegador, guardando los datos en el almacenamiento local (`localStorage`).
+
+## Características
+
+- Añadir un turno seleccionando:
+  - Fecha
+  - Hora
+  - Tipo de turno (Mañana, Tarde, Noche, Vacaciones, Libranza, Débito Horario)
+  - Nota opcional
+- Visualización de los turnos en:
+  - Tabla
+  - Tarjetas individuales (Cards)
+- Eliminación de turnos registrados.
+- Diseño responsive y optimizado para móviles.
+- No requiere conexión a internet después de ser cargada.
+
+
 
 ## Cómo usar TurnosApp
 
@@ -54,3 +65,6 @@ Te puedo guiar en ese proceso si quieres. 🚀
 ---
 
 Hecho con ❤️ para la organización y la gestión de tus turnos personales.
+
+
+
