@@ -1,72 +1,56 @@
 TurnosApp
 
-TurnosApp es una aplicación web sencilla para gestionar tus turnos de trabajo. Puedes seleccionar fecha, hora, tipo de turno y agregar notas. Los datos se almacenan localmente en el navegador (localStorage).
+# TurnosApp
 
-Tecnologías utilizadas
+**TurnosApp** es una aplicación web sencilla que permite a los usuarios registrar, visualizar y eliminar turnos personales. Funciona completamente en el navegador, guardando los datos en el almacenamiento local (`localStorage`).
 
-HTML5
+## Características
 
-CSS3
+- Añadir un turno seleccionando:
+  - Fecha
+  - Hora
+  - Tipo de turno (Mañana, Tarde, Noche, Vacaciones, Libranza, Débito Horario)
+  - Nota opcional
+- Visualización de los turnos en:
+  - Tabla
+  - Tarjetas individuales (Cards)
+- Eliminación de turnos registrados.
+- Diseño responsive y optimizado para móviles.
+- No requiere conexión a internet después de ser cargada.
 
-JavaScript (Vanilla)
+## Instalación
 
-Estructura del proyecto
+Puedes alojarla fácilmente en GitHub Pages, Netlify o cualquier servidor web, o simplemente abrir el archivo `index.html` en tu navegador.
 
-TurnosApp/
-├── index.html
-├── style.css (estilos incluidos en index.html)
-├── script.js (código JS incluido en index.html)
+### Para desplegar en GitHub Pages:
+1. Sube los archivos (`index.html`, `style.css`, `script.js` si los separas) a un repositorio.
+2. En la configuración del repositorio, habilita GitHub Pages desde la rama `main` o `docs`.
+3. ¡Listo! Tu app estará disponible en una URL pública.
 
-Instrucciones para usarlo localmente
+### Para empaquetar como APK para Android:
 
-Descarga o clona este repositorio.
+1. Usa herramientas como [**WebView Gold**, **PWA2APK**, **Bubblewrap**] o crea una app nativa ligera en Android Studio que cargue tu página web.
+2. Alternativamente, si quieres hacerlo fácil:
+   - Instala **CapacitorJS** o **Cordova**.
+   - Empaqueta tu sitio como una app webview.
+   - Compila usando Android Studio.
 
-Abre el archivo index.html en tu navegador.
+Te puedo guiar en ese proceso si quieres. 🚀
 
-No necesitas servidor. Funciona directamente en tu navegador.
+## Cómo usar TurnosApp
 
-Publicarlo en GitHub Pages
+1. Abre la aplicación en tu navegador o dispositivo.
+2. Completa el formulario con la fecha, hora, tipo de turno y una nota si deseas.
+3. Presiona **"Añadir turno"**.
+4. Tus turnos aparecerán en una tabla y también en formato de tarjeta.
+5. Puedes eliminar un turno haciendo clic en el icono 🗑️.
 
-Sube los archivos a un repositorio en GitHub.
+## Captura de Pantalla
 
-Entra en Settings > Pages.
+![Pantalla TurnosApp](./pantalla.png)
 
-Selecciona la rama donde está el código y carpeta /root.
+*(Agrega aquí una captura de pantalla si quieres)*
 
-Guarda y accede a tu enlace de GitHub Pages.
+---
 
-Convertirlo en una APK (Android)
-
-Instala Node.js y npm: https://nodejs.org/
-
-Instala Capacitor:
-
-npm install --global @capacitor/cli
-
-Crea un proyecto:
-
-npx create-react-app turnosapp (puede ser un proyecto vacío si quieres)
-cd turnosapp
-
-Copia tu archivo index.html dentro de /public o crea estructura compatible.
-
-Inicializa Capacitor:
-
-npx cap init "TurnosApp" "com.turnos.app"
-
-Agrega plataforma Android:
-
-npx cap add android
-
-Sincroniza tu app:
-
-npx cap copy
-npx cap open android
-
-Compila APK en Android Studio y firma tu aplicación.
-
-Autor
-
-TurnosApp creado en 2025.
-
-Diseño inspirado en apps de gestión personal.v
+Hecho con ❤️ para la organización y la gestión de tus turnos personales.
