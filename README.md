@@ -1,32 +1,3 @@
-TurnosApp
-
-# TurnosApp
-
-**TurnosApp** es una aplicación web sencilla que permite a los usuarios registrar, visualizar y eliminar turnos personales. Funciona completamente en el navegador, guardando los datos en el almacenamiento local (`localStorage`).
-
-## Características
-
-- Añadir un turno seleccionando:
-  - Fecha
-  - Hora
-  - Tipo de turno (Mañana, Tarde, Noche, Vacaciones, Libranza, Débito Horario)
-  - Nota opcional
-- Visualización de los turnos en:
-  - Tabla
-  - Tarjetas individuales (Cards)
-- Eliminación de turnos registrados.
-- Diseño responsive y optimizado para móviles.
-- No requiere conexión a internet después de ser cargada.
-
-## Instalación
-
-Puedes alojarla fácilmente en GitHub Pages, Netlify o cualquier servidor web, o simplemente abrir el archivo `index.html` en tu navegador.
-
-### Para desplegar en GitHub Pages:
-1. Sube los archivos (`index.html`, `style.css`, `script.js` si los separas) a un repositorio.
-2. En la configuración del repositorio, habilita GitHub Pages desde la rama `main` o `docs`.
-3. ¡Listo! Tu app estará disponible en una URL pública.
-
 
 # TurnosApp
 
@@ -56,11 +27,7 @@ Puedes alojarla fácilmente en GitHub Pages, Netlify o cualquier servidor web, o
 4. Tus turnos aparecerán en una tabla y también en formato de tarjeta.
 5. Puedes eliminar un turno haciendo clic en el icono 🗑️.
 
-## Captura de Pantalla
 
-![Pantalla TurnosApp](./pantalla.png)
-
-*(Agrega aquí una captura de pantalla si quieres)*
 
 ---
 
